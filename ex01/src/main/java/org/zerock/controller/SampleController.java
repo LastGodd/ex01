@@ -37,6 +37,7 @@ public class SampleController {
 	// @RequestMapping(value = "/basic") : /basic으로 접속하며 GET 방식으로 요청
 	// @RequestMapping(value = "/basic1", "/basic2") : /basic1또는 /basic2로 접속
 	// @RequestMapping(value = "/basic1/{seq}") : URI에 파라미터를 줄 수 있다 (@PathVariable("seq") int seq)
+	// @PathVariable : URL 경로에 변수를 넣어주는 것
 	@RequestMapping(value = "/basic", method = { RequestMethod.GET, RequestMethod.POST })
 	public void basicGet() {
 		log.info("basic get.....");
