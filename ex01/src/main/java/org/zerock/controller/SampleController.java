@@ -34,7 +34,10 @@ public class SampleController {
 	}
 
 	// @RequestMapping은 GET,POST, PUT, DELETE 방식 모두를 지원해야 하는 경우에 배열로 처리해서 지정할 수 있다.
-	@RequestMapping(value = "/basic", method = { RequestMethod.GET })
+	// @RequestMapping(value = "/basic") : /basic으로 접속하며 GET 방식으로 요청
+	// @RequestMapping(value = "/basic1", "/basic2") : /basic1또는 /basic2로 접속
+	// @RequestMapping(value = "/basic1/{seq}") : URI에 파라미터를 줄 수 있다 (@PathVariable("seq") int seq)
+	@RequestMapping(value = "/basic", method = { RequestMethod.GET, RequestMethod.POST })
 	public void basicGet() {
 		log.info("basic get.....");
 	}
@@ -49,6 +52,8 @@ public class SampleController {
 	 * 파라미터 수집과 변환
 	 */
 
+	// Controller를 작성할 때 가장 편리한 기능은 파라미터가 자동으로 수집되는 기능이다.
+	// 이 기능을 이용하면 매번 request.getParamater()를 이용하는 불편함을 없앨 수 있다.
 	// 파라미터와 DTO의 이름이 같은 경우 자동으로 타입을 변환해서 처리해준다.
 	// 객체 처리
 	// http://localhost:8080/sample/ex01?name=AAA&age=111
