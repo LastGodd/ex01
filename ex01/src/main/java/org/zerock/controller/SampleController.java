@@ -3,16 +3,20 @@ package org.zerock.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.zerock.domain.SampleDTO;
 import org.zerock.domain.SampleDTOList;
 import org.zerock.domain.TodoDTO;
@@ -191,5 +195,19 @@ public class SampleController {
 		header.add("Content-Type", "application/json;charset=UTF-8");
 		
 		return new ResponseEntity<String>(msg, header, HttpStatus.OK);
+	}
+	
+	@GetMapping("/exUpload")
+	public void exUpload() {
+		log.info("/exUpload.....");
+	}
+	
+	@PostMapping("/exUploadPost")
+	public void exUploadPost(ArrayList<MultipartFile> files) {
+		files.forEach(file-> {
+			log.info("========================================");
+			log.info("name: " + file.getOriginalFilename());
+			log.info("size: " + file.getSize());
+		});
 	}
 }
